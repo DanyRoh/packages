@@ -6,7 +6,6 @@ def describe_df(df):
     :return: imprime diferentes descripciones del dataframe
     """
 
-
     print(df.describe())
     print(df.head())
     print(df.tail())
