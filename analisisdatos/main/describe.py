@@ -6,9 +6,8 @@ def describe_df(df):
     :return: imprime diferentes descripciones del dataframe
     """
 
-    print(df.describe())
-    print(df.head())
+    print(f'Datos estadísticos:\n{df.describe()}')
+    df.head()
     print(df.tail())
     print(f'El dataframe tiene {df.shape[0]} filas y {df.shape[1]} columnas.')
 
-#%%
