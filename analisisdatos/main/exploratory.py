@@ -1,3 +1,4 @@
+import pandas as pd
 
 def describe_df(df):
     """
@@ -23,18 +24,26 @@ def describe_df(df):
 
 def identify_na_values(df):
     """
-    Identifica los valores susceptibles de ser tratados para mejorar la calidad del dataframe antes del análisis
+    Identifica los valores NA del dataframe y facilita un diccionario con los índices por cada variable
     :param df: dataframe de la librería Pandas
-    :return: Devuelve un diccionario con las variables como claves y una lista con los registros agrupaods
-        en base a la incidencia detectada en el dataframe
+    :return: Devuelve un diccionario con las variables como claves y una lista con los registros agrupaodos
     """
-    print('Recuento de registros NA por cada variable:\n\n')
-    display(df.isna().sum())
-
     na_values = {}
-
     for col in df.columns:
-        na_registers = df[df[col].isna()]
-        na_values[col] = na_registers
+        na_registers = df.index[df[col].isna()].tolist()
+        if na_registers:
+            na_values[col] = na_registers
 
-    return na_values
+    if not na_values:
+        print('No hay valores NA')
+    else:
+        print('Recuento de registros NA por cada variable:\n')
+        display(pd.DataFrame({'Variable': df.columns.to_list(),
+                      'NA totales': df.isna().sum(),
+                      '% del total': df.isna().sum()/len(df)}).set_index('Variable'))
+
+        print('Detalle de las variables que contienen valores NA e índices donde se encuentran en el dataframe\n')
+        display(na_values)
+
+
+def
