@@ -45,5 +45,3 @@ def identify_na_values(df):
         print('Detalle de las variables que contienen valores NA e índices donde se encuentran en el dataframe\n')
         display(na_values)
 
-
-def
