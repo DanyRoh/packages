@@ -1,5 +1,6 @@
 from urllib.parse import urlparse
 
+
 def is_url(url):
     """
     Verifica si una cadena tiene formato de url
